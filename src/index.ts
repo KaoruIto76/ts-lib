@@ -1,22 +1,23 @@
-import { Optional } from "./Option/Optional"
+import { Optional,Some,None } from "./Option/Optional"
 
-export default () => {
 
-  
-  const a = Optional(1).map(x => x + 2).get()
-  const b = Optional(null)
-  
-  console.log(a)
-  console.log(b)
-
-  submit(Optional(null))
-
-  function submit(some: Optional<any>) {
-    if(some.isEmpty) {
-      return some.get()
-    } else {
-      return null
-    }
-  }
+export interface Test {
+  name: Optional<string>
+  age:  Optional<number>
 }
 
+const a:Test = {
+  name: Some('kaoru'),
+  age:  None
+}
+
+console.log(a.age.getOrElse(1))
+
+/**
+
+function a<T>(x: T)
+
+function a(x: string)
+
+function a(x: number)
+ */

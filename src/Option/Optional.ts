@@ -6,7 +6,7 @@ export interface Optional<A> {
   isEmpty:  boolean
   nonEmpty: boolean
   get(): A
-  getOrElse<B extends A>(a: B): A  // fix when null, undefined
+  getOrElse<B>(a: B): B | A  // fix when null, undefined
   map<B>(f: (a: A) => B): Optional<B>
   fold<B>(ifEmpty: B, f: (a: A) => B): B
   flatten(): Optional<A>
@@ -18,6 +18,7 @@ export interface Optional<A> {
   foreach(f: (a: A) => void): void
   orElse<B extends A>(ob: Optional<B>): Optional<A>
   // add methods
+  test():A
   apply1<B, C>(ob: Optional<B>, f: (a: A, b: B) => C): Optional<C>
   apply2<B, C, D>(ob: Optional<B>, oc: Optional<C>, f: (a: A, b: B, c: C) => D): Optional<D>
 }
@@ -40,9 +41,13 @@ class OptionalImpl<A> implements Optional<A> {
     throw 'err'
   }
 
+  test(): A {
+    return this.get()
+  }
+
   // nn~~~~~
-  getOrElse<B extends A>(elseV: B): A {
-    return this.isEmpty ? elseV : this.get()
+  getOrElse<B>(elseValue: B): B | A {
+    return this.isEmpty ? elseValue : this.get()
   }
 
   map<B>(f: (a: A) => B): Optional<B> {
