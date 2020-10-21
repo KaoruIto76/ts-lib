@@ -6,18 +6,16 @@ export interface Test {
   age:  Optional<number>
 }
 
+const str = 'kaoru'
+const num = str.includes('g') ? Some(1) : None
+
 const a:Test = {
   name: Some('kaoru'),
-  age:  None
+  age:  num
 }
 
-console.log(a.age.getOrElse(1))
+const opt = Optional(Optional(1))
 
-/**
-
-function a<T>(x: T)
-
-function a(x: string)
-
-function a(x: number)
- */
+console.log(a)
+console.log([Optional(1),Optional('a')])
+console.log(opt.flatMap(x => x.map(x => x + 1)))

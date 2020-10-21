@@ -18,7 +18,6 @@ export interface Optional<A> {
   foreach(f: (a: A) => void): void
   orElse<B extends A>(ob: Optional<B>): Optional<A>
   // add methods
-  test():A
   apply1<B, C>(ob: Optional<B>, f: (a: A, b: B) => C): Optional<C>
   apply2<B, C, D>(ob: Optional<B>, oc: Optional<C>, f: (a: A, b: B, c: C) => D): Optional<D>
 }
@@ -39,10 +38,6 @@ class OptionalImpl<A> implements Optional<A> {
 
   get(): A {
     throw 'err'
-  }
-
-  test(): A {
-    return this.get()
   }
 
   // nn~~~~~
@@ -120,9 +115,7 @@ class NoneImpl extends OptionalImpl<any> implements Optional<any> {
   isEmpty: boolean = true
   nonEmpty: boolean = false
 
-  get(): any {
-    throw new TypeError('None can not #get')
-  }
+  get(): any { throw new TypeError('None can not #get') }
 
   toString(): string {
     return 'None'

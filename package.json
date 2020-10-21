@@ -4,16 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc":  "tsc",
-    "build":"webpack --watch",
+    "tsc": "tsc",
+    "build": "webpack --watch",
+    "ex":    "./node_modules/.bin/ts-node ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-   "ts-loadaer": "6.2.1",
-   "typescript": "3.7.5",
-   "webpack": "   4.41.5",
-   "webpack-cli":"3.3.10"
+    "ts-loader":   "8.0.4",
+    "typescript":  "4.0.3",
+    "webpack": "    5.0.0",
+    "webpack-cli": "4.0.0",
+    "ts-node":     "9.0.0"
   }
 }
